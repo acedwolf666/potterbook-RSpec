@@ -62,4 +62,31 @@ describe Cart do
       expect(@cart.calculate).to eq(640)
     end
   end
+
+  context "15% off" do
+    it "buy one 1st, one 2nd, one 3rd and one 4th" do
+      @cart.add({ "1st": 1, "2nd": 1, "3rd": 1, "4th": 1, "5th": 0 })
+      expect(@cart.calculate).to eq(340)
+    end
+
+    it "buy two 1st, two 2nd, two 3rd and two 4th" do
+      @cart.add({ "1st": 2, "2nd": 2, "3rd": 2, "4th": 2, "5th": 0 })
+      expect(@cart.calculate).to eq(680)
+    end
+
+    it "buy one 1st, two 2nd, two 3rd and two 4th" do
+      @cart.add({ "1st": 1, "2nd": 2, "3rd": 2, "4th": 2, "5th": 0 })
+      expect(@cart.calculate).to eq(610)
+    end
+
+    it "buy two 1st, two 2nd, two 3rd and three 4th" do
+      @cart.add({ "1st": 2, "2nd": 2, "3rd": 2, "4th": 3, "5th": 0 })
+      expect(@cart.calculate).to eq(780)
+    end
+
+    it "buy two 1st, three 2nd, four 3rd and five 4th" do
+      @cart.add({ "1st": 2, "2nd": 3, "3rd": 4, "4th": 5, "5th": 0 })
+      expect(@cart.calculate).to eq(1240)
+    end
+  end
 end
