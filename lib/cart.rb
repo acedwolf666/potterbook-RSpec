@@ -10,7 +10,9 @@ class Cart
     @ordered_items = @ordered_items.delete_if{ |i| i == 0 }
 
     while @ordered_items.size > 0
-      if @ordered_items.size == 4
+      if @ordered_items.size == 5
+        total += 5*PRICE*0.8
+      elsif @ordered_items.size == 4
         total += 4*PRICE*0.85
       elsif @ordered_items.size == 3
         total += 3*PRICE*0.9
